@@ -1,7 +1,10 @@
-self.addEventListener("push", (opts) => {
-    console.log("Push data received", opts);
+self.addEventListener("push", (event) => {
+    console.log("Push data received", event);
 
-    const { data } = opts;
+    let data = {};
+    if (event.data) {
+        data = event.data.json();
+    }
 
     const options = {
         body: data.content,
@@ -22,7 +25,7 @@ self.addEventListener("push", (opts) => {
         ]
     };
 
-    opts.waitUntil(
+    event.waitUntil(
         self.registration.showNotification(data.title, options)
     )
 })

@@ -5,13 +5,12 @@ const vapIdKeys = {
     privateKey: 'ssWDgyb9MU_vK8PiRnzdkGxlFWafZuMdA5RdS60sUZA'
 }
 
-const options = {
-    vapIdKeys: {
-        subject: "mailto:test@abner.com",
-        publicKey: vapIdKeys.publicKey,
-        privateKey: vapIdKeys.privateKey
-    }
-}
+push.setVapidDetails(
+    "mailto:test@abner.com",
+    vapIdKeys.publicKey,
+    vapIdKeys.privateKey
+);
+
 const sub = {
     "endpoint": "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
     "expirationTime": null,
@@ -30,4 +29,4 @@ const data = {
 
 var payload = 'Here is a payload!';
 
-push.sendNotification(sub, payload, options);
+push.sendNotification(sub, JSON.stringify(data));
