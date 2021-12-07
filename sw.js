@@ -13,20 +13,7 @@ self.addEventListener("push", (event) => {
         actions: data.actions
     };
 
-    const notification = new Notification(data.title, options);
-    event.waitUntil(self.registration(notification))
-
-    notification.addEventListener("click", (event) => {
-        console.log(event);
-
-        event.waitUntil(clients.matchAll().then((clients) => {
-            clients.forEach((client) => {
-                if (client.url === data.url) {
-                    client.focus();
-                }
-            })
-        }))
-    })
+    event.waitUntil(self.registration.showNotification(data.title, options));
 });
 
 self.addEventListener('notificationclick', function (event) {
