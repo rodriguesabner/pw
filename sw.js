@@ -27,11 +27,11 @@ self.addEventListener('notificationclick', function (event) {
         clients.openWindow(messageId.url)
     );
 
-    // if (event.action === 'pre_checkin') {
-    //     clients.openWindow("https://www.venithoteis.com/");
-    // } else if (event.action === 'new_reservation') {
-    //     clients.openWindow("https://adminrc.zooxpass.com/");
-    // } else {
-    //     clients.openWindow("https://zooxdemo.rc.zooxpass.com/");
-    // }
+    event.actions.map((arr) => {
+        arr.some((action) => {
+            if (action.action === arr.action) {
+                clients.openWindow(action.url);
+            }
+        });
+    })
 }, false);
