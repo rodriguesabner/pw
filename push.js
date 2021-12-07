@@ -12,12 +12,19 @@ push.setVapidDetails(
 );
 
 const sub = {
-    endpoint: "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
-    expirationTime: null,
-    keys: {
-        p256dh: "BPfByE0cXtET1grOjTDZPzuGNhl3FlJJqOG70CX1GsW9m6mbR5N1MBWzBnUiFzbAY1nHAqyLYnmDBBHbzQiKGCE",
-        auth: "JcKEyL55J0uSxwdkCNIaNQ"
+    "endpoint": "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
+    "expirationTime": null,
+    "keys": {
+        "p256dh": "BPfByE0cXtET1grOjTDZPzuGNhl3FlJJqOG70CX1GsW9m6mbR5N1MBWzBnUiFzbAY1nHAqyLYnmDBBHbzQiKGCE",
+        "auth": "JcKEyL55J0uSxwdkCNIaNQ"
     }
 }
 
-push.sendNotification(sub, JSON.stringify({nome: "Oi Abner"}));
+const data = {
+    title: "Push Notification",
+    body: "This is a push notification",
+    icon: "https://cdn.iconscout.com/icon/free/png-256/push-notification-2-1175416.png",
+    url: "https://abner.com"
+}
+
+push.sendNotification(sub, data);
