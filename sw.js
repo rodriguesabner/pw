@@ -22,11 +22,16 @@ self.addEventListener('notificationclick', function (event) {
 
     event.notification.close();
 
-    if (event.action === 'pre_checkin') {
-        clients.openWindow("https://www.venithoteis.com/");
-    } else if (event.action === 'new_reservation') {
-        clients.openWindow("https://adminrc.zooxpass.com/");
-    } else {
-        clients.openWindow("https://zooxdemo.rc.zooxpass.com/");
-    }
+    //dynamic click action
+    event.waitUntil(
+        clients.openWindow(messageId.url)
+    );
+
+    // if (event.action === 'pre_checkin') {
+    //     clients.openWindow("https://www.venithoteis.com/");
+    // } else if (event.action === 'new_reservation') {
+    //     clients.openWindow("https://adminrc.zooxpass.com/");
+    // } else {
+    //     clients.openWindow("https://zooxdemo.rc.zooxpass.com/");
+    // }
 }, false);
