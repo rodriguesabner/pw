@@ -38,7 +38,7 @@ self.addEventListener('notificationclick', function (event) {
 
     event.notification.close();
 
-    if(event.action == null) {
+    if(event.action === "") {
         clients.openWindow(messageId.url);
         return;
     }
