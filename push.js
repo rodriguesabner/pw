@@ -20,4 +20,4 @@ const sub = {
     }
 }
 
-push.sendNotification(sub, "Testeeeee");
+push.sendNotification(sub, JSON.stringify({nome: "Oi Abner"}));
