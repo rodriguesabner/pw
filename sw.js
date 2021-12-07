@@ -28,7 +28,7 @@ self.addEventListener('notificationclick', function (event) {
     // );
 
     event.actions.map((arr) => {
-        arr.some((action) => {
+        event.action.some((action) => {
             if (action.action === arr.action) {
                 clients.openWindow(action.url);
             }
