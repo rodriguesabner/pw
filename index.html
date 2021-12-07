@@ -37,29 +37,10 @@
     </pre>
 
     <script>
-        const isSubscribed = false;
-
         addEventListener('load', async () => {
             let sw = await navigator.serviceWorker.register('sw.js');
             console.log(sw);
         });
-
-        function updateBtn() {
-            if (Notification.permission === 'denied') {
-                pushButton.textContent = 'Push Messaging Blocked.';
-                pushButton.disabled = true;
-                //updateSubscriptionOnServer(null);
-                return;
-            }
-
-            if (isSubscribed) {
-                pushButton.textContent = 'Disable Push Messaging';
-            } else {
-                pushButton.textContent = 'Enable Push Messaging';
-            }
-
-            pushButton.disabled = false;
-        }
 
         async function subscribe() {
             let sw = await navigator.serviceWorker.ready;
@@ -67,8 +48,6 @@
                 userVisibleOnly: true,
                 applicationServerKey: "BIYU9-MdUzL3bYjmOwuEeBlea33V18PoZ8wkMXU9qcYh1pc5dS63PVf3TEWh-mRJjnxUOZA1bexDbDcRjnoeKlU"
             });
-
-            isSubscribed = true;
 
             const content = document.getElementById('content');
             content.textContent = JSON.stringify(subscription);
