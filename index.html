@@ -5,8 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=javascript"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 2em;
+        }
+
         button {
             background-color: #F2F4F6;
             color: #000;
@@ -14,7 +25,7 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 70%;
+            border-radius: 4px;
         }
     </style>
 
@@ -22,37 +33,32 @@
 </head>
 
 <body>
-    <button onclick="subscribe()">
-        Habilitar Notificação
-    </button>
+<button onclick="subscribe()">
+    Habilitar Notificação
+</button>
 
-    <p>
-        Clique no botão acima para habilitar notificações.
-    </p>
 
-    <pre>
-        <code type="text/javascript">
-            <span id="content"></span>
-        </code>
-    </pre>
+<pre class="prettyprint">
+    <code class="language-javascript" id="code"></code>
+</pre>
 
-    <script>
-        addEventListener('load', async () => {
-            let sw = await navigator.serviceWorker.register('sw.js');
-            console.log(sw);
+<script>
+    addEventListener('load', async () => {
+        let sw = await navigator.serviceWorker.register('sw.js');
+        console.log(sw);
+    });
+
+    async function subscribe() {
+        let sw = await navigator.serviceWorker.ready;
+        let subscription = await sw.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: "BIYU9-MdUzL3bYjmOwuEeBlea33V18PoZ8wkMXU9qcYh1pc5dS63PVf3TEWh-mRJjnxUOZA1bexDbDcRjnoeKlU"
         });
 
-        async function subscribe() {
-            let sw = await navigator.serviceWorker.ready;
-            let subscription = await sw.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: "BIYU9-MdUzL3bYjmOwuEeBlea33V18PoZ8wkMXU9qcYh1pc5dS63PVf3TEWh-mRJjnxUOZA1bexDbDcRjnoeKlU"
-            });
-
-            const content = document.getElementById('content');
-            content.textContent = JSON.stringify(subscription);
-        }
-    </script>
+        const content = document.getElementById('code');
+        content.textContent = JSON.stringify(subscription);
+    }
+</script>
 </body>
 
 </html>
