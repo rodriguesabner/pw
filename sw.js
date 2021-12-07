@@ -24,7 +24,7 @@ self.addEventListener('notificationclick', function (event) {
 
     messageId.actions.map((payload) => {
         if (payload.action === event.action) {
-            clients.openWindow(payload[event.action].url);
+            clients.openWindow(payload.url);
         }
     })
 }, false);
