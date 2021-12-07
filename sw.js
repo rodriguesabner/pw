@@ -25,25 +25,12 @@ self.addEventListener('notificationclick', function (event) {
 
     switch (event.actions) {
         case 'pre_checkin':
+            event.notification.close();
             clients.openWindow(event.actions["pre_checkin"].url); //which we got from above
             break;
-        case 'any_other_action':
-            clients.openWindow("https://www.example.com");
+        case 'new_reservation':
+            event.notification.close();
+            event.waitUntil(clients.openWindow(event.actions["new_reservation"].url));
             break;
     }
-
-    event.actions.map((action) => {
-        if (action.action === "new_reservation") {
-            event.notification.close();
-
-            console.log(action, action.url);
-            event.waitUntil(clients.openWindow(action.url));
-        }
-    });
 }, false);
-
-self.addEventListener('click', function() {
-    if (clients.openWindow) {
-        clients.openWindow('https://example.blog.com/2015/03/04/something-new.html');
-    }
-});
