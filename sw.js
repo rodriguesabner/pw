@@ -21,16 +21,16 @@ self.addEventListener("push", (event) => {
 });
 
 self.addEventListener('notificationclick', function (event) {
-    console.log(event.actions);
+    const messageId = event.notification.data;
+    console.log('notificationclick', messageId);
 
-    switch (event.actions) {
-        case 'pre_checkin':
-            event.notification.close();
-            clients.openWindow(event.actions["pre_checkin"].url); //which we got from above
-            break;
-        case 'new_reservation':
-            event.notification.close();
-            event.waitUntil(clients.openWindow(event.actions["new_reservation"].url));
-            break;
+    event.notification.close();
+
+    if (event.action === 'pre_checkin') {
+        clients.openWindow("https://www.venithoteis.com/");
+    } else if (event.action === 'new_reservation') {
+        clients.openWindow("https://adminrc.zooxpass.com/");
+    } else {
+        clients.openWindow("https://zooxdemo.rc.zooxpass.com/");
     }
 }, false);

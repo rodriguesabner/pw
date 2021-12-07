@@ -12,16 +12,16 @@ push.setVapidDetails(
 );
 
 const sub = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/flm0G7I6mfw:APA91bFBoC4alwug68ZvfAIqFqgEQIxdrIHwQZ_IGOX7_l0v4kCxSUHOSC-uWjNfjUw53naBdKK8SiocnMDfxYjJ0ELmD83XwdRf2fITFjfn0kh3uKLrlIiOgdUBPA3BTEI9KNfBuU4-",
     "expirationTime": null,
     "keys": {
-        "p256dh": "BPfByE0cXtET1grOjTDZPzuGNhl3FlJJqOG70CX1GsW9m6mbR5N1MBWzBnUiFzbAY1nHAqyLYnmDBBHbzQiKGCE",
-        "auth": "JcKEyL55J0uSxwdkCNIaNQ"
+        "p256dh": "BH0gwppdBvs8NcS1-OuTCRhU9Nqnn8TgLozNuk4GquzaSsu020_TSK4SeIL_bqJAHSFpRZlYPneCo-UvMezLa1s",
+        "auth": "OhhotQSJgLZqWmax5TJ0Ag"
     }
 }
 
 const data = {
-    title: "Checkin Chegando",
+    title: "Venit Hotel Barra",
     content: "Seu checkin foi confirmado!",
     icon: "https://cdn.iconscout.com/icon/free/png-256/push-notification-2-1175416.png",
     openUrl: "https://zoox.com",
