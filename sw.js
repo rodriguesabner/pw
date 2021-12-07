@@ -1,11 +1,7 @@
 self.addEventListener("push", (opts) => {
     console.log("Push data received", opts);
 
-    const data = {
-        title: "Push Notification",
-        content: "Click to see the notification",
-        openUrl: "/"
-    };
+    const { data } = opts;
 
     const options = {
         body: data.content,
