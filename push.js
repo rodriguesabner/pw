@@ -12,11 +12,11 @@ push.setVapidDetails(
 );
 
 const sub = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/duBUArJrYrc:APA91bGvODhl7Q3HwP3LjYMHHeHhX1eKPK-mouIRKm_LJNOAYF5QDlSwnFfezWZtI6vw8Qw4jsiDV78jUdXnqlyq3_Rkq2Nbp500BcOsgnJwjYINcpgVLYENszk4CUL8_rV_LIGjyKHY",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
     "expirationTime": null,
     "keys": {
-        "p256dh": "BPGqHh6oQt2rvEbflrgTdvT9xPzPCAVCCV3Cf19iQdQzTKU237_JcXCjm6A7jyhgTR1e5kbmRooGQbMWr0eMU6k",
-        "auth": "JOlh3e3QTedMkfjC8nR6Dw"
+        "p256dh": "BPfByE0cXtET1grOjTDZPzuGNhl3FlJJqOG70CX1GsW9m6mbR5N1MBWzBnUiFzbAY1nHAqyLYnmDBBHbzQiKGCE",
+        "auth": "JcKEyL55J0uSxwdkCNIaNQ"
     }
 }
 
@@ -28,11 +28,13 @@ const data = {
     actions: [
         {
             action: "pre_checkin",
-            title: "👍"
+            title: "Realizar Web Checkin",
+            url: "https://zooxdemo.rc.zooxpass.com/"
         },
         {
             action: "new_reservation",
-            title: "😁"
+            title: "Nova Reserva",
+            url: "https://adminrc.zooxpass.com/"
         }
     ]
 }
