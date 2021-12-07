@@ -12,27 +12,27 @@ push.setVapidDetails(
 );
 
 const sub = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/csoO-3B_2xk:APA91bFgYdLyt_x798DAueXesPfGBRgxI-ut23hbaMv3sOHgd9KOq4_hjTLOuottiktXO0s5jqn5yLJyXd-j61xsdzeJ2KQH-8Zqf69LGG0FdKAftupy_6ld0JccXe7dpKXLhlG7uuVZ",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/duBUArJrYrc:APA91bGvODhl7Q3HwP3LjYMHHeHhX1eKPK-mouIRKm_LJNOAYF5QDlSwnFfezWZtI6vw8Qw4jsiDV78jUdXnqlyq3_Rkq2Nbp500BcOsgnJwjYINcpgVLYENszk4CUL8_rV_LIGjyKHY",
     "expirationTime": null,
     "keys": {
-        "p256dh": "BPfByE0cXtET1grOjTDZPzuGNhl3FlJJqOG70CX1GsW9m6mbR5N1MBWzBnUiFzbAY1nHAqyLYnmDBBHbzQiKGCE",
-        "auth": "JcKEyL55J0uSxwdkCNIaNQ"
+        "p256dh": "BPGqHh6oQt2rvEbflrgTdvT9xPzPCAVCCV3Cf19iQdQzTKU237_JcXCjm6A7jyhgTR1e5kbmRooGQbMWr0eMU6k",
+        "auth": "JOlh3e3QTedMkfjC8nR6Dw"
     }
 }
 
 const data = {
-    title: "Você ganhou um novo amigo!",
-    content: "Clique aqui para ver os detalhes!",
+    title: "Checkin Chegando",
+    content: "Seu checkin foi confirmado!",
     icon: "https://cdn.iconscout.com/icon/free/png-256/push-notification-2-1175416.png",
-    openUrl: "https://abner.com",
+    openUrl: "https://zoox.com",
     actions: [
         {
-            action: "yes",
+            action: "pre_checkin",
             title: "👍"
         },
         {
-            action: "no",
-            title: "👎"
+            action: "new_reservation",
+            title: "😁"
         }
     ]
 }
