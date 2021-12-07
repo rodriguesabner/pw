@@ -21,12 +21,20 @@ const sub = {
 }
 
 const data = {
-    title: "Abner Rodrigues",
-    body: "This is a push notification",
+    title: "Você ganhou um novo amigo!",
+    content: "Clique aqui para ver os detalhes!",
     icon: "https://cdn.iconscout.com/icon/free/png-256/push-notification-2-1175416.png",
-    url: "https://abner.com"
+    openUrl: "https://abner.com",
+    actions: [
+        {
+            action: "yes",
+            title: "👍"
+        },
+        {
+            action: "no",
+            title: "👎"
+        }
+    ]
 }
-
-var payload = 'Here is a payload!';
 
 push.sendNotification(sub, JSON.stringify(data));

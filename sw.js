@@ -1,10 +1,10 @@
 self.addEventListener("push", (event) => {
-    console.log("Push data received", event);
-
     let data = {};
     if (event.data) {
         data = event.data.json();
     }
+
+    console.log("Push data", data);
 
     const options = {
         body: data.content,
@@ -13,16 +13,7 @@ self.addEventListener("push", (event) => {
         data: {
             url: data.openUrl
         },
-        actions: [
-            {
-                action: "yes",
-                title: "👍"
-            },
-            {
-                action: "no",
-                title: "👎"
-            }
-        ]
+        actions: data.actions
     };
 
     event.waitUntil(
