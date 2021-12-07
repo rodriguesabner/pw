@@ -4,20 +4,29 @@ self.addEventListener("push", (event) => {
         data = event.data.json();
     }
 
-    console.log("Push data", data);
-
     const options = {
         body: data.content,
         icon: "/src/images/icons/app-icon-96x96.png",
         vibrate: [300, 100, 400, 100, 400, 100, 400],
         badge: "/src/images/icons/app-icon-96x96.png",
-        data: {
-            url: data.openUrl
-        },
+        data,
         actions: data.actions
     };
 
-    event.waitUntil(self.registration.showNotification(data.title, options))
+    const notification = new Notification(data.title, options);
+    event.waitUntil(self.registration(notification))
+
+    notification.addEventListener("click", (event) => {
+        console.log(event);
+
+        event.waitUntil(clients.matchAll().then((clients) => {
+            clients.forEach((client) => {
+                if (client.url === data.url) {
+                    client.focus();
+                }
+            })
+        }))
+    })
 });
 
 self.addEventListener('notificationclick', function (event) {
