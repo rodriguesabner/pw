@@ -22,20 +22,9 @@ self.addEventListener('notificationclick', function (event) {
 
     event.notification.close();
 
-    // //dynamic click action
-    // event.waitUntil(
-    //     clients.openWindow(messageId.url)
-    // );
-
-    event.actions.map((action) => {
-        console.log("map");
-    });
-
-    event.actions.map((arr) => {
-        event.actions.some((action) => {
-            if (action.action === arr.action) {
-                clients.openWindow(action.url);
-            }
-        });
+    event.notification.actions.map((payload) => {
+        if (payload.action === event.action) {
+            clients.openWindow(payload[event.action].url);
+        }
     })
 }, false);
