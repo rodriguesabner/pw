@@ -23,25 +23,23 @@ self.addEventListener("push", (event) => {
 self.addEventListener('notificationclick', function (event) {
     console.log(event.actions);
 
-    const actions = event.actions;
+    switch (event.actions) {
+        case 'pre_checkin':
+            clients.openWindow(event.actions["pre_checkin"].url); //which we got from above
+            break;
+        case 'any_other_action':
+            clients.openWindow("https://www.example.com");
+            break;
+    }
 
     event.actions.map((action) => {
-        if (action.action.includes(actions)) {
+        if (action.action === "new_reservation") {
             event.notification.close();
 
             console.log(action, action.url);
             event.waitUntil(clients.openWindow(action.url));
         }
     });
-
-    switch (event.actions) {
-        case 'open_url':
-            clients.openWindow(event.notification.data.url); //which we got from above
-            break;
-        case 'any_other_action':
-            clients.openWindow("https://www.example.com");
-            break;
-    }
 }, false);
 
 self.addEventListener('click', function() {
