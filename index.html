@@ -28,6 +28,15 @@
             border-radius: 4px;
         }
 
+        .wrapper {
+            margin-top: 2em;
+            max-width: 300px;
+        }
+
+        input {
+            padding: 10px;
+        }
+
         pre {
             max-width: 500px;
             background: #F2F4F6;
@@ -46,14 +55,38 @@
 </head>
 
 <body onload="subscribe()">
+<h4>
+    Passo 1
+</h4>
 <button onclick="subscribe()">
     Habilitar Notificação
 </button>
 
-
 <pre class="prettyprint">
     <code class="language-javascript" id="code"></code>
 </pre>
+
+<div class="wrapper" style="display: flex; flex-direction: column">
+    <h4>
+        Passo 2
+    </h4>
+    <h2>
+        Cadastre o CPF
+    </h2>
+    <input type="text" id="resNumber" placeholder="Digite o CPF">
+    <button onclick="registerCpf()">
+        Cadastrar
+    </button>
+</div>
+
+<div class="wrapper" style="display: flex; flex-direction: column">
+    <h4>
+        Passo 3
+    </h4>
+    <button>
+        Consultar Score
+    </button>
+</div>
 
 <script onload="initComponents()">
     async function initComponents() {
@@ -74,6 +107,11 @@
 
         const content = document.getElementById('code');
         content.textContent = JSON.stringify(subscription);
+    }
+
+    async function registerCpf(){
+        const subscription = document.getElementById('code').textContent;
+        const cpfInfo = document.getElementById('resNumber').textContent;
 
         const headers = {
             Authorization: 'Basic NDAxNTU3Y2YtY2Q1OS00MTBlLTlkNTUtOGJhNzk2OTU1ZjViOmI3ZmZlYjVmZjBhMTQ0NTNmZTcyNWY4Mjc3NTMyODk3ZTQ0MzdhMTM=',
@@ -82,7 +120,7 @@
 
         const data = {
             type: 'register',
-            source: {id: 'AB12345', type: 'smck-admin'},
+            source: {id: cpfInfo, type: 'openFinance'},
             subscription
         }
 
@@ -91,6 +129,47 @@
             url: 'http://192.168.15.46:3400/subscription/',
             headers,
             data
+        };
+
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
+    async function consultarDados(){
+        const cpfInfo = document.getElementById('resNumber').textContent;
+        const randomScore = Math.floor(Math.random() * (1000 - 150 + 1) + 150)
+
+        const options = {
+            method: 'POST',
+            url: 'http://192.168.15.46:3400/subscription/send/',
+            headers: {
+                Authorization: 'Basic NDAxNTU3Y2YtY2Q1OS00MTBlLTlkNTUtOGJhNzk2OTU1ZjViOmI3ZmZlYjVmZjBhMTQ0NTNmZTcyNWY4Mjc3NTMyODk3ZTQ0MzdhMTM=',
+                'Content-Type': 'application/json'
+            },
+            data: {
+                source_id: cpfInfo,
+                notification: {
+                    title: 'Open Finance',
+                    content: `O seu score é ${randomScore}`,
+                    icon: 'https://www.serasa.com.br/lno/static-webfiles/logo/serasa-white.svg',
+                    url: 'https://zoox.com',
+                    actions: [
+                        {
+                            action: 'pre_checkin',
+                            title: 'Realizar Web Checkin',
+                            url: 'https://zooxdemo.rc.zooxpass.com/'
+                        },
+                        {
+                            action: 'new_reservation',
+                            title: 'Nova Reserva',
+                            url: 'https://adminrc.zooxpass.com/'
+                        }
+                    ]
+                }
+            }
         };
 
         axios.request(options).then(function (response) {
