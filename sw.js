@@ -3,9 +3,6 @@ self.addEventListener('activate', function(event) {
         caches.keys().then(function(cacheNames) {
             return Promise.all(
                 cacheNames.filter(function(cacheName) {
-                    // Return true if you want to remove this cache,
-                    // but remember that caches are shared across
-                    // the whole origin
                 }).map(function(cacheName) {
                     return caches.delete(cacheName);
                 })
@@ -22,9 +19,9 @@ self.addEventListener("push", (event) => {
 
     const options = {
         body: data.content,
-        icon: "/src/images/icons/app-icon-96x96.png",
+        icon: data.icon,
         vibrate: [300, 100, 400, 100, 400, 100, 400],
-        badge: "/src/images/icons/app-icon-96x96.png",
+        badge: data.icon,
         data,
         actions: data.actions
     };
