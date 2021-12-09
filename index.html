@@ -83,7 +83,7 @@
     <h4>
         Passo 3
     </h4>
-    <button>
+    <button onclick="consultarDados()">
         Consultar Score
     </button>
 </div>
@@ -111,7 +111,7 @@
 
     async function registerCpf(){
         const subscription = document.getElementById('code').textContent;
-        const cpfInfo = document.getElementById('resNumber').textContent;
+        const cpfInfo = document.getElementById('resNumber').value;
 
         const headers = {
             Authorization: 'Basic NDAxNTU3Y2YtY2Q1OS00MTBlLTlkNTUtOGJhNzk2OTU1ZjViOmI3ZmZlYjVmZjBhMTQ0NTNmZTcyNWY4Mjc3NTMyODk3ZTQ0MzdhMTM=',
@@ -132,14 +132,14 @@
         };
 
         axios.request(options).then(function (response) {
-            console.log(response.data);
+            alert("Cadastrado com sucesso!");
         }).catch(function (error) {
             console.error(error);
         });
     }
 
     async function consultarDados(){
-        const cpfInfo = document.getElementById('resNumber').textContent;
+        const cpfInfo = document.getElementById('resNumber').value;
         const randomScore = Math.floor(Math.random() * (1000 - 150 + 1) + 150)
 
         const options = {
