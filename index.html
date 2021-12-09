@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=javascript"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -56,7 +56,7 @@
 </pre>
 
 <script onload="initComponents()">
-    async function initComponents(){
+    async function initComponents() {
         this.subscribe();
     }
 
@@ -74,6 +74,47 @@
 
         const content = document.getElementById('code');
         content.textContent = JSON.stringify(subscription);
+
+        const headers = {
+            'X-App-Version': '2.0.7',
+            showLoading: '1',
+            Authorization: 'Basic NDAxNTU3Y2YtY2Q1OS00MTBlLTlkNTUtOGJhNzk2OTU1ZjViOmI3ZmZlYjVmZjBhMTQ0NTNmZTcyNWY4Mjc3NTMyODk3ZTQ0MzdhMTM=',
+            Accept: 'application/json',
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Origin': '*',
+            'X-App-Name': 'smck-admin',
+            'X-Origin-Link': '',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36',
+            lang: 'pt',
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+            'sec-ch-ua-platform': '"Linux"',
+            Origin: 'https://adminrc.zooxpass.com',
+            'Sec-Fetch-Site': 'same-site',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            Referer: 'https://adminrc.zooxpass.com/',
+            'Accept-Language': 'en-US,en;q=0.9,pt;q=0.8',
+            'Content-Type': 'application/json'
+        }
+
+        const data = {
+            type: 'register',
+            source: {id: 'AB12345', type: 'smck-admin'},
+            subscription
+        }
+
+        const options = {
+            method: 'POST',
+            url: 'http://localhost:3400/subscription/',
+            headers,
+            data
+        };
+
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 </script>
 </body>
