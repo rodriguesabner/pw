@@ -131,7 +131,7 @@
         const data = {
             type: 'register',
             source: {id: cpfInfo, type: 'openFinance'},
-            subscription
+            subscription: JSON.parse(subscription)
         }
 
         const options = {
