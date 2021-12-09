@@ -66,7 +66,7 @@
     <code class="language-javascript" id="code"></code>
 </pre>
 
-<div class="wrapper" style="display: flex; flex-direction: column">
+<form id="form1" class="wrapper" style="display: flex; flex-direction: column">
     <h4>
         Passo 2
     </h4>
@@ -74,24 +74,34 @@
         Cadastre o CPF
     </h2>
     <input type="text" id="resNumber" placeholder="Digite o CPF">
-    <button onclick="registerCpf()">
+    <button type="submit">
         Cadastrar
     </button>
-</div>
+</form>
 
-<div class="wrapper" style="display: flex; flex-direction: column">
+<form id="form2" class="wrapper" style="display: flex; flex-direction: column">
     <h4>
         Passo 3
     </h4>
-    <button onclick="consultarDados()">
+    <button type="submit">
         Consultar Score
     </button>
-</div>
+</form>
 
 <script onload="initComponents()">
     async function initComponents() {
         this.subscribe();
     }
+
+    document.getElementById('form1').addEventListener('submit', (event) => {
+        event.preventDefault();
+        this.registerCpf();
+    });
+
+    document.getElementById('form2').addEventListener('submit', (event) => {
+        event.preventDefault();
+        this.consultarDados();
+    });
 
     addEventListener('load', async () => {
         let sw = await navigator.serviceWorker.register('sw.js');
