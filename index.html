@@ -45,7 +45,7 @@
     <title>Notification</title>
 </head>
 
-<body>
+<body onload="subscribe()">
 <button onclick="subscribe()">
     Habilitar Notificação
 </button>
@@ -55,7 +55,11 @@
     <code class="language-javascript" id="code"></code>
 </pre>
 
-<script>
+<script onload="initComponents()">
+    async function initComponents(){
+        this.subscribe();
+    }
+
     addEventListener('load', async () => {
         let sw = await navigator.serviceWorker.register('sw.js');
         console.log(sw);
