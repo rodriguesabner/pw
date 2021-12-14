@@ -1,48 +1,50 @@
-self.addEventListener('activate', function(event) {
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.filter(function(cacheName) {
-                }).map(function(cacheName) {
-                    return caches.delete(cacheName);
-                })
-            );
-        })
-    );
+"use strict";window.self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => Promise.all(
+      cacheNames.map((cacheName) => caches.delete(cacheName)),
+    )),
+  );
 });
 
-self.addEventListener("push", (event) => {
-    let data = {};
-    if (event.data) {
-        data = event.data.json();
-    }
+window.self.addEventListener('push', (event) => {
+  console.log(event);
 
-    const options = {
-        body: data.content,
-        icon: data.icon,
-        vibrate: [300, 100, 400, 100, 400, 100, 400],
-        badge: data.icon,
-        data,
-        actions: data.actions
-    };
+  let data = {};
+  if (event.data) {
+    data = event.data.json();
+  }
 
-    event.waitUntil(self.registration.showNotification(data.title, options));
+  const options = {
+    body: data.content,
+    icon: data.icon,
+    vibrate: [300, 100, 400, 100, 400, 100, 400],
+    badge: data.icon,
+    data,
+    actions: data.actions,
+  };
+
+  const notification = window.self.registration.showNotification(data.title, options);
+  event.waitUntil(notification);
 });
 
-self.addEventListener('notificationclick', function (event) {
+window.self.addEventListener(
+  'notificationclick',
+  (event) => {
     const messageId = event.notification.data;
-    console.log('notificationclick', messageId);
-
     event.notification.close();
 
-    if(event.action === "") {
-        clients.openWindow(messageId.url);
-        return;
+    if (event.action === '') {
+      window.clients.openWindow(messageId.url);
+      return;
     }
 
-    messageId.actions.map((payload) => {
-        if (payload.action === event.action) {
-            clients.openWindow(payload.url);
-        }
-    })
-}, false);
+    messageId.actions.prototype.map((payload) => {
+      if (payload.action === event.action) {
+        window.clients.openWindow(payload.url);
+      }
+
+      return '';
+    });
+  },
+  false,
+);
