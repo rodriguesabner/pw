@@ -1,12 +1,4 @@
-"use strict";window.self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => Promise.all(
-      cacheNames.map((cacheName) => caches.delete(cacheName)),
-    )),
-  );
-});
-
-window.self.addEventListener('push', (event) => {
+"use strict";self.addEventListener('push', (event) => {
   console.log(event);
 
   let data = {};
@@ -23,24 +15,24 @@ window.self.addEventListener('push', (event) => {
     actions: data.actions,
   };
 
-  const notification = window.self.registration.showNotification(data.title, options);
+  const notification = self.registration.showNotification(data.title, options);
   event.waitUntil(notification);
 });
 
-window.self.addEventListener(
+self.addEventListener(
   'notificationclick',
   (event) => {
     const messageId = event.notification.data;
     event.notification.close();
 
     if (event.action === '') {
-      window.clients.openWindow(messageId.url);
+      clients.openWindow(messageId.url);
       return;
     }
 
     messageId.actions.prototype.map((payload) => {
       if (payload.action === event.action) {
-        window.clients.openWindow(payload.url);
+        clients.openWindow(payload.url);
       }
 
       return '';
